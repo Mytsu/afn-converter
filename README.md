@@ -2,7 +2,7 @@
 
 #### Instituto Federal de Minas Gerais - Campus Formiga
 
-##### Jonathan Arantes <<john.mytsu@gmail.com>>
+##### Jonathan Arantes <<tlc.jooker@gmail.com>>
 ##### Saulo Cassiano
 
 Trabalho Prático da disciplina de Linguagens Formais de Autômatos (LFA) - Conversor de Autômatos Finitos Não-Determísticos (AFN) para Expressão Regular (Regex)
