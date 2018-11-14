@@ -33,7 +33,7 @@ class Automato(object):
         self.addEstado([fin.nome, fin.tipo, fin.transicoes])
 
     def segundo_passo(self):
-
+        pass
 
 
 
