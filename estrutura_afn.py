@@ -47,7 +47,7 @@ class Automato(object):
 
             for i in range(len(self.automato[1].transicoes)):
                 lista_automatos_querecebem.append(self.automato[1].transicoes[i])
-                #continua depois
+                #continua depois para ver como faz
 
     def modificaTransicoes(self):
         for i in range(len(self.getAutomato())):
