@@ -37,10 +37,10 @@ O autômato a ser lido na entrada de dados deve ser entregue na forma de um arqu
 ```JSON
 {
 "af": [
-    ["1", "2", "3"],            // Lista de estados
-    ["a", "b", "c", "d"],       // Alfabeto do automato
-    [                           // Transicoes
-   1     ["1", "a", "1"],
+    ["1", "2", "3"],
+    ["a", "b", "c", "d"],
+    [
+        ["1", "a", "1"],
         ["1", "#", "2"],
         ["2", "b", "2"],
         ["2", "#", "3"],
@@ -48,12 +48,22 @@ O autômato a ser lido na entrada de dados deve ser entregue na forma de um arqu
         ["3", "a", "2"],
         ["3", "d", "2"]
     ],
-    ["1", "3"],                 // estados iniciais
-    ["2"]                       // estados finais
+    ["1", "3"],
+    ["2"]
 ],
 "r": ["1", "3", "2"]
 }
 ```
+
+O arquivo é definido pelos campos:
+
+#### af
+
+    - Lista de Estados;
+    - Alfabeto;
+    - Lista de Transições;
+    - Lista de Estados iniciais;
+    - Lista de Estados finais;
 
 ### Passo a passo do algoritmo
 
