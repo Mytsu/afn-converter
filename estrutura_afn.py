@@ -35,6 +35,32 @@ class Automato(object):
     def segundo_passo(self):
         pass
 
+    def deletaEstado(self):
+        lista_automatos_quechegam = []
+        lista_automatos_querecebem = []
+        while self.automato[1].tipo == 1:
+            for i in range(len(self.getAutomato())):
+                if i != 1:
+                    for j in range(len(self.automato[i].transicoes)):
+                        if self.automato[i].transicoes[j][1] == self.automato[1]:
+                            lista_automatos_quechegam.append(self.automato[i])
+
+            for i in range(len(self.automato[1].transicoes)):
+                lista_automatos_querecebem.append(self.automato[1].transicoes[i])
+                #continua depois
+
+    def modificaTransicoes(self):
+        for i in range(len(self.getAutomato())):
+            for j in range(len(self.automato[i].transicoes)):
+                if "," in self.automato[i].transicows[j][0]:
+                    self.automato[i].transicows[j][0].str.replace(",", "+")
+                    self.automato[i].transicows[j][0] = "(" + self.automato[i].transicows[j][0] + ")"
+
+                if self.automato[i].transicoes[j][1] == self.automato[i]:
+                    self.automato[i].transicows[j][0] = self.automato[i].transicows[j][0] + "*"
+
+
+
 
 
 
