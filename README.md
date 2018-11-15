@@ -59,11 +59,11 @@ O arquivo é definido pelos campos:
 
 #### af
 
-    - Lista de Estados;
-    - Alfabeto;
-    - Lista de Transições;
-    - Lista de Estados iniciais;
-    - Lista de Estados finais;
+- Lista de Estados;
+- Alfabeto;
+- Lista de Transições;
+- Lista de Estados iniciais;
+- Lista de Estados finais;
 
 ### Passo a passo do algoritmo
 
