@@ -24,9 +24,10 @@ Exemplo de autômato:
 
 ```Python
 automato = [
-                Estado(1, True, [['a', 2]),
-                Estado(2, None, [['b', 1], ['a', 3]),
-                Estado(3, False, [['a', 3], ['b', 2]])
+                Estado("1", 0, [['a', "2"], ["b", "3"]),
+                Estado("2", 1, [['b', "2"], ["a", "4"]),
+                Estado("3", 1, [['b', 4]])
+                Estado("4", 2, [])
            ]
 ```
 
