@@ -1,3 +1,9 @@
+"""
+    INSTITUTO FEDERAL DE MINAS GERAIS - CAMPUS FORMIGA
+    Jonathan Arantes Pinto <tlc.jooker@gmail.com>
+    Saulo Cassiano <>
+"""
+
 class Estado(object):
 
     def __init__(self, nome=None, tipo=None, matriz_transicoes=None):
