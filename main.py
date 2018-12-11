@@ -63,12 +63,20 @@ def carregar_arquivo(filename: str) -> (Automato, []):
 """
 def pintar_etapa(aut: Automato, etapa: int = 0, estado: str = None):
     dot = Digraph()
+    dot.attr('node', shape='doublecircle')
     for est in aut.getAutomato():
+        if est.tipo == 2:
+            dot.node(est.nome, label=est.nome)
+    dot.attr('node', shape='circle')
+    for est in aut.getAutomato():
+        if est.tipo == 0:
+            dot.edge('I', est.nome, label='#')
         if est.nome == estado:
             dot.node_attr.update(color='red')
         else:
             dot.node_attr.update(color='black')
-        dot.node(est.nome, label=est.nome)
+        if est.tipo != 2 and est.tipo != 0:
+            dot.node(est.nome, label=est.nome)
         for transicao in est.transicoes:
             if transicao[1] == estado:
                 dot.edge_attr.update(color='red')
