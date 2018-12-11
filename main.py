@@ -86,7 +86,7 @@ def pintar_etapa(aut: Automato, etapa: int = 0, estado: str = None):
 
 
 if __name__ == '__main__':
-    automato, lista = carregar_arquivo('teste2.json')
+    automato, lista = carregar_arquivo('teste.json')
     pintar_etapa(automato, 0, automato.automato[2].nome)
     # Deixando em ordem do tipo, influencia a ordem que deleta os estados
     automato.automato.sort(key=lambda x: x.tipo)
