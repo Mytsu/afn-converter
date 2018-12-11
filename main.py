@@ -44,7 +44,7 @@ def carregar_arquivo(filename: str) -> (Automato, []):
     with open(filename) as file:
         data = json.load(file)
         for nome in data['af']['estados']:
-            estados.append(Estado(nome, '1', []))
+            estados.append(Estado(nome, 1, []))
         for e in estados:
             for inicial in data['af']['iniciais']:
                 if e.nome == inicial:
@@ -86,7 +86,7 @@ def pintar_etapa(aut: Automato, etapa: int = 0, estado: str = None):
 
 
 if __name__ == '__main__':
-    automato, lista = carregar_arquivo('teste.json')
+    automato, lista = carregar_arquivo('teste2.json')
     pintar_etapa(automato, 0, automato.automato[2].nome)
     # Deixando em ordem do tipo, influencia a ordem que deleta os estados
     automato.automato.sort(key=lambda x: x.tipo)
