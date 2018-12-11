@@ -5,7 +5,7 @@
 """
 
 import json
-from .estrutura_afn import Estado, Automato
+from estrutura_afn import Estado, Automato
 from graphviz import Digraph
 
 """
@@ -36,7 +36,7 @@ FORMATO DO ARQUIVO DE DADOS JSON
     retorna um tipo Automato e uma lista com a ordem dos
     estados a serem deletados
 """
-def carregar_arquivo(filename: str) -> Automato, []:
+def carregar_arquivo(filename: str) -> (Automato, []):
     estados = []
     automato = Automato()
     with open(filename) as file:
@@ -66,12 +66,13 @@ def pintar_etapa(estado: str, automato: Automato, etapa: int):
     for est in automato.automato:
         if est.nome == estado:
             dot.node_attr.update(color='red')
-        elif dot.node_attr.update(color='black')
-        dot.node(est.nome, label = est.nome
-        for transicao in estado.transicoes:
+        else:
+            dot.node_attr.update(color='black')
+        dot.node(est.nome, label = est.nome)
+        for transicao in est.transicoes:
             if transicao[1] == estado:
                 dot.edge_attr.update(color='red')
-            elif dot.edge_attr.update(color='black')
+            else: dot.edge_attr.update(color='black')
             dot.edge(estado.nome, transicao[1], label = transicao[0])
     dot.attr(label = 'Etapa #' + str(etapa))
     dot.render('saida/etapa' + str(etapa) + '.gv')
