@@ -1,5 +1,0 @@
-digraph teste {
-	A [label=tnc]
-	B [label=hai color=red]
-	A -> B
-}
