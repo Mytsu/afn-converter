@@ -55,9 +55,6 @@ class Automato(object):
                     self.automato[i].transicoes[j][0] = aux
                     self.automato[i].transicoes[j][0] = "(" + self.automato[i].transicoes[j][0] + ")"
 
-                if self.automato[i].transicoes[j][1] == self.automato[i].nome:
-                    self.automato[i].transicoes[j][0] = self.automato[i].transicoes[j][0] + "*" #Adicionando símbolo de fecho"
-
     #Função que pega todas transições que saem do estado que será deletado
     def saida_do_vertice_deletado(self, no_deletado):
         for i in range(len(self.getAutomato())):
@@ -120,13 +117,16 @@ class Automato(object):
         posicao_ligacao = self.verifica_se_existe_ligacao(nome_no, nome_no) #pegando a posição da transição no vetor transição
         simbolo = self.verifica_laco_interno(nome_no)  #Pegando o símbolo da transição
         posicao_no = self.pega_estado(nome_no)  #Pegando a posição do estado no vetor
-        self.automato[posicao_no].transicoes.pop(posicao_ligacao)   #Depois de pegar todos dados elimanará a transição de fecho de klen do estado
-        for i in range(len(self.automato[posicao_no].transicoes)):
-            if self.automato[posicao_no].transicoes[i][0] != "#":    #Caso o símbolo seja diferente de apenas "#", será concatenado aos outros símbolos
-                aux = simbolo + self.automato[posicao_no].transicoes[i][0]
-                self.automato[posicao_no].transicoes[i][0] = aux
-            else:
-                self.automato[posicao_no].transicoes[i][0] = simbolo    #Caso contrário apenas será atribuido o símbolo a lista
+
+        if len(self.automato[posicao_no].transicoes) > 1:
+            for i in range(len(self.automato[posicao_no].transicoes)):
+                if self.automato[posicao_no].transicoes[i][0] == "#":
+                    self.automato[posicao_no].transicoes[i][0] = simbolo + "*"
+                else:
+                    aux = simbolo + "*" + self.automato[posicao_no].transicoes[i][0]
+                    self.automato[posicao_no].transicoes[i][0] = aux
+
+            self.automato[posicao_no].transicoes.pop(posicao_ligacao)
 
         return self.automato
 
@@ -162,10 +162,8 @@ class Automato(object):
                     aux = ''
                     if nome_origem != deleta_nome:  #Condição para evitar que pegue os símbolo de transição interno
                         aux = self.verifica_se_existe_ligacao(nome_origem, deleta_nome)
-                        var1 = self.automato[vertices_que_vao_ao_no[i]].transicoes[aux]
                         aux = self.automato[vertices_que_vao_ao_no[i]].transicoes[aux][0]   #Se nao for fecho de klen, pegará o símbolo de transição
 
-                    var2 = self.automato[posicao_no_vetor_do_no_deletado].transicoes[j]
                     simbolo_destino = self.automato[posicao_no_vetor_do_no_deletado].transicoes[j][0]   #Pegando o símbolo de transição do estado a ser deletado com o primeiro destino no vetor do "FOR"
                     aux = [aux, simbolo_destino]
                     simbolos_concatenados = self.simbolos_transicao(aux)    #tratando os simbolos pegos
