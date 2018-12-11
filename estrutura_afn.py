@@ -143,20 +143,6 @@ class Automato(object):
             for j in range(len(lista_transicoes_no_deletado)):
                 destino = self.automato[posicao_no_vetor_do_no_deletado].transicoes[j][1]   #Primeiro destino de uma transição do no a ser deletado
                 if deleta_nome != destino:
-                    """
-                    #Seu Código vai vir aqui, var1 recebe a posicão da transiçaõ entre o no que tem uma transição partindo e chega ao no deletado
-                    #var2 recebe a posição da ligação do no deletado ao no destino, no caso o primeiro que achar
-                    #var1 e var2 dois sao posiçoes no vetor de transição dos nos
-                    
-                    
-                    var1 = self.verifica_se_existe_ligacao(self.automato[vertices_que_vao_ao_no[i]].nome, deleta_nome)
-                    var2 = self.verifica_se_existe_ligacao(deleta_nome, destino)
-                    print("\n")
-                    print(deleta_nome, var1, var2)
-                    print("\n")
-                    var1 = ""
-                    var2 = ""
-                    """
 
                     nome_origem = self.automato[vertices_que_vao_ao_no[i]].nome #Pegando o nome do priemiro estado no vetor que vai ao no deletado
                     aux = ''

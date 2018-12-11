@@ -58,6 +58,7 @@ def carregar_arquivo(filename: str) -> (Automato, []):
             automato.addEstado([e.nome, e.tipo, e.transicoes])
     return automato, data['r']
 
+
 """
     pintar_etapa:
     Gera uma imagem do automato dado como entrada, colore
@@ -76,32 +77,28 @@ def pintar_etapa(aut: Automato, etapa: int = 0, estado: str = None):
     for est in aut.getAutomato():
         if est.tipo == 0:
             dot.edge('I', est.nome, label='#')
-        if est.nome == estado:
-            dot.node_attr.update(color='red')
-        else:
-            dot.node_attr.update(color='black')
         if est.tipo != 2 and est.tipo != 0:
             dot.node(est.nome, label=est.nome)
         for transicao in est.transicoes:
-            if transicao[1] == estado:
-                dot.edge_attr.update(color='red')
-            else: dot.edge_attr.update(color='black')
             dot.edge(est.nome, transicao[1], label=transicao[0])
-    dot.attr(label = 'Etapa #' + str(etapa))
+    dot.attr(label='Etapa #' + str(etapa))
     dot.render('saida/etapa' + str(etapa) + '.gv')
 
 
 if __name__ == '__main__':
     automato, lista = carregar_arquivo('teste.json')
     pintar_etapa(automato, 0, automato.automato[2].nome)
-    automato.automato.sort(key=lambda x: x.tipo)    #Deixando em ordem do tipo, influencia a ordem que deleta os estados
-    automato.primeiro_passo()   #Acrescenta o estado "I" e "F"
-    automato.modificaTransicoes()   #Aqui troca "," por "+" e coloca "*"
+    # Deixando em ordem do tipo, influencia a ordem que deleta os estados
+    automato.automato.sort(key=lambda x: x.tipo)
+    automato.primeiro_passo()  # Acrescenta o estado "I" e "F"
+    automato.modificaTransicoes()  # Aqui troca "," por "+" e coloca "*"
 
+    et = 0
     while automato.automato[0].tipo != 0:
+        pintar_etapa(automato, etapa=et, estado=automato.getAutomato()[0])
         automato.deleta_estado(automato.automato[0].nome)
+        et += 1
+    pintar_etapa(automato, etapa=et)
 
-    print("Expression Regular is: " + str(automato.automato[0].transicoes[0][0]))
-
-
-
+    print("Expression Regular is: " +
+          str(automato.automato[0].transicoes[0][0]))
