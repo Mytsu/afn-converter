@@ -68,6 +68,7 @@ def pintar_etapa(aut: Automato, etapa: int = 0, estado: str = None):
         if est.tipo == 2:
             dot.node(est.nome, label=est.nome)
     dot.attr('node', shape='circle')
+    dot.node('I', style='invisible')
     for est in aut.getAutomato():
         if est.tipo == 0:
             dot.edge('I', est.nome, label='#')
