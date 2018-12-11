@@ -12,7 +12,7 @@ from graphviz import Digraph
 FORMATO DO ARQUIVO DE DADOS JSON
 
 {
-    "af": [
+    "af": {
         "estados": ["1", "2", "3"],
         "alfabeto": ["a", "b", "c", "d"],
         "transicoes": [
@@ -26,7 +26,7 @@ FORMATO DO ARQUIVO DE DADOS JSON
         ],
         "iniciais": ["1", "3"],
         "finais": ["2"]
-    ],
+    },
     "r": ["1", "3", "2"]
 }
 """
@@ -53,7 +53,7 @@ def carregar_arquivo(filename: str) -> (Automato, []):
             for tr in data['af']['transicoes']:
                 if e.nome == tr[0]:
                     e.transicoes.append([tr[1], tr[2]])
-            automato.addEstado(e)
+            automato.addEstado([e.nome, e.tipo, e.transicoes])
     return automato, data['r']
 
 """
@@ -61,18 +61,22 @@ def carregar_arquivo(filename: str) -> (Automato, []):
     Gera uma imagem do automato dado como entrada, colore
     o estado indicado e suas transicoes
 """
-def pintar_etapa(estado: str, automato: Automato, etapa: int):
+def pintar_etapa(aut: Automato, etapa: int = 0, estado: str = None):
     dot = Digraph()
-    for est in automato.automato:
+    for est in aut.getAutomato():
         if est.nome == estado:
             dot.node_attr.update(color='red')
         else:
             dot.node_attr.update(color='black')
-        dot.node(est.nome, label = est.nome)
+        dot.node(est.nome, label=est.nome)
         for transicao in est.transicoes:
             if transicao[1] == estado:
                 dot.edge_attr.update(color='red')
             else: dot.edge_attr.update(color='black')
-            dot.edge(estado.nome, transicao[1], label = transicao[0])
+            dot.edge(est.nome, transicao[1], label=transicao[0])
     dot.attr(label = 'Etapa #' + str(etapa))
     dot.render('saida/etapa' + str(etapa) + '.gv')
+
+if __name__ == '__main__':
+    automato, lista = carregar_arquivo('teste.json')
+    pintar_etapa(automato)
