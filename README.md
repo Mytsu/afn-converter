@@ -88,36 +88,8 @@ R:
 4. Ordena o vetor de autômato por ordem de tipo, sendo 0 para iniciais, 1 para intermediários e 2 para finais.
 5. Há um laço que deleta estado ate que chegue o esatado incicial no vetor autômato, ordem de inserção.
 6. No deleta estado é feita uma verificação se determinado estado tem laço interno, caso tenha, irá removê-lo e ja colocar seu símbolo com os outros de forma correta. Por fim retorna-se o novo automato depois da conversao.
-7. Pega-se dados como posição do estado no vetor, os nomes dos vertices que vao ao nó deletado e por fim, dos vertices que recebem alguma ligação do no deletado
-
-        #Nestes dois "FOR" será pego da lista do estados que vão ao no a ser deletado e as transições do no a ser deletado com os outros estados
-        for i in range(len(vertices_que_vao_ao_no)):
-            for j in range(len(lista_transicoes_no_deletado)):
-                destino = self.automato[posicao_no_vetor_do_no_deletado].transicoes[j][1]   #Primeiro destino de uma transição do no a ser deletado
-                if deleta_nome != destino:
-
-                    nome_origem = self.automato[vertices_que_vao_ao_no[i]].nome #Pegando o nome do priemiro estado no vetor que vai ao no deletado
-                    aux = ''
-                    if nome_origem != deleta_nome:  #Condição para evitar que pegue os símbolo de transição interno
-                        aux = self.verifica_se_existe_ligacao(nome_origem, deleta_nome)
-                        aux = self.automato[vertices_que_vao_ao_no[i]].transicoes[aux][0]   #Se nao for fecho de klen, pegará o símbolo de transição
-
-                    simbolo_destino = self.automato[posicao_no_vetor_do_no_deletado].transicoes[j][0]   #Pegando o símbolo de transição do estado a ser deletado com o primeiro destino no vetor do "FOR"
-                    aux = [aux, simbolo_destino]
-                    simbolos_concatenados = self.simbolos_transicao(aux)    #tratando os simbolos pegos
-
-                    pos_ligacao = self.verifica_se_existe_ligacao(nome_origem, destino) #pegando, se existe, a posição da ligação do no que tem transição para no deletado
-                                                                                        # e do Nó a ser deletado para o No destino do Vetor
-                    aux = self.automato[vertices_que_vao_ao_no[i]].transicoes[pos_ligacao][0]   #Pegando o símbolo da transição acima
-                    if pos_ligacao != int(-1) and aux != "#":    #Caso exista e o simbolo de transião seja "#" é feita uma concatenação
-                        aux = self.automato[vertices_que_vao_ao_no[i]].transicoes[pos_ligacao][0]
-                        self.automato[vertices_que_vao_ao_no[i]].transicoes[pos_ligacao][0] = "(" + aux + \
-                            "+" + simbolos_concatenados + ")"
-                    else:
-                        ligacao = [simbolos_concatenados, destino]  #Caso contrário apenas inserirá a transição do no origem para o nó a ser deletado
-                        self.automato[vertices_que_vao_ao_no[i]].transicoes.append(ligacao)
-
-            limpa_transicao = self.verifica_se_existe_ligacao(self.automato[vertices_que_vao_ao_no[i]].nome, deleta_nome)
-            #"limpa_transicao" recebe a posicao da transição que está atual no "FOR" externo, caso I
-            self.automato[vertices_que_vao_ao_no[i]].transicoes.pop(limpa_transicao)    #É deletado esta transição do estado origem que vai para o nó deletado
-        self.automato.pop(posicao_no_vetor_do_no_deletado)  #Por fim deleta o estado deletado do vetor
+7. Pega-se dados como posição do estado no vetor, os nomes dos vertices que vao ao nó deletado e por fim, dos vertices que recebem alguma ligação do no deletado.
+8. Percore um FOR externo com os nos que vao ao no deletado e dentro dele um outro for que percorre os nos que recebem ligação do no deletado.
+9. Verifica-se so os nos envolvidos nao são em um caso de loop.
+8. Caso nao seja, verifica-se se existe ligação do estado que vai ao deletado e do deletado ao proximo, caso seja, apenas concatena-se da forma correta os simbolos.
+9. Uma vez feita a concatenação, pega a posição da transição do estado deletado e deleta ela, quando todas transicçoes do estado acabar, deleta o estado do vetor.
