@@ -44,7 +44,7 @@ def carregar_arquivo(filename: str) -> (Automato, []):
     with open(filename) as file:
         data = json.load(file)
         for nome in data['af']['estados']:
-            estados.append(Estado(nome, '1', []))
+            estados.append(Estado(nome, 1, []))
         for e in estados:
             for inicial in data['af']['iniciais']:
                 if e.nome == inicial:
