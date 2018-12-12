@@ -26,7 +26,7 @@ Um estado é constituído por:
 Uma lista de transições que segue o formato:
 
 ```Python
-            transicao = [simbolo, estado_destino]
+transicao = [simbolo, estado_destino]
 ```
 
 Um autômato é meramente uma lista de estados, nesta estrutura.
