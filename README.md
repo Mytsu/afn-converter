@@ -2,8 +2,8 @@
 
 #### Instituto Federal de Minas Gerais - Campus Formiga
 
-##### Jonathan Arantes <<tlc.jooker@gmail.com>>
-##### Saulo Cassiano
+##### Jonathan Arantes - <tlc.jooker@gmail.com>
+##### Saulo Cassiano - <>
 
 Trabalho Prático da disciplina de Linguagens Formais de Autômatos (LFA) - Conversor de Autômatos Finitos Não-Determísticos (AFN) para Expressão Regular (Regex)
 
@@ -96,7 +96,7 @@ R:
 
 7. Pega-se dados como posição do estado no vetor, os nomes dos vertices que vao ao nó deletado e por fim, dos vertices que recebem alguma ligação do no deletado;
 
-8. Percore um FOR externo com os nos que vao ao no deletado e dentro dele um outro for que percorre os nos que recebem ligação do no deletado;
+8. Percore um _for_ externo com os nos que vao ao no deletado e dentro dele um outro for que percorre os nos que recebem ligação do no deletado;
 
 9. Verifica-se so os nos envolvidos nao são em um caso de loop;
 
