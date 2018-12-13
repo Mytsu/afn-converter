@@ -3,7 +3,7 @@
 #### Instituto Federal de Minas Gerais - Campus Formiga
 
 ##### Jonathan Arantes - <tlc.jooker@gmail.com>
-##### Saulo Cassiano - <>
+##### Saulo Cassiano de Carvalho - <saulocarvalho64@gmail.com>
 
 Trabalho Prático da disciplina de Linguagens Formais de Autômatos (LFA) - Conversor de Autômatos Finitos Não-Determísticos (AFN) para Expressão Regular (Regex)
 
@@ -88,18 +88,16 @@ R:
 
 3. Armazenar o autômato em uma lista;
 
-4. Ordena o vetor de autômato por ordem de tipo, sendo 0 para iniciais, 1 para intermediários e 2 para finais;
+4. Há um laço que deleta estado ate que chegue o estado inicial no vetor autômato, já prevista na estrada de dados;
 
-5. Há um laço que deleta estado ate que chegue o esatado incicial no vetor autômato, ordem de inserção;
+5. No deleta estado é feita uma verificação se determinado estado tem laço interno, caso tenha, irá removê-lo e já colocar seu símbolo com os outros de forma correta, caso tenha mais de uma transição naquele estado. Por fim retorna-se o novo automato depois da conversão;
 
-6. No deleta estado é feita uma verificação se determinado estado tem laço interno, caso tenha, irá removê-lo e ja colocar seu símbolo com os outros de forma correta. Por fim retorna-se o novo automato depois da conversao;
+6. Pega-se dados como posição do estado no vetor, os nomes dos vértices que vão ao nó deletado e por fim, dos vértices que recebem alguma ligação do no deletado;
 
-7. Pega-se dados como posição do estado no vetor, os nomes dos vertices que vao ao nó deletado e por fim, dos vertices que recebem alguma ligação do no deletado;
+7. Percorre um _for_ externo com os nos que vão ao no deletado e dentro dele um outro for que percorre os nos que recebem ligação do no deletado;
 
-8. Percore um _for_ externo com os nos que vao ao no deletado e dentro dele um outro for que percorre os nos que recebem ligação do no deletado;
+8. Verifica-se somente os estados envolvidos não são em um caso de loop (origem - estado deletado || estado deletado - destino);
 
-9. Verifica-se so os nos envolvidos nao são em um caso de loop;
+9. Caso não seja, verifica-se se existe ligação do estado que vai ao deletado e do deletado ao próximo, se tiver ligação, depois concatena-se os os símbolos dos estados;
 
-10. Caso nao seja, verifica-se se existe ligação do estado que vai ao deletado e do deletado ao proximo, caso seja, apenas concatena-se da forma correta os simbolos;
-
-11. Uma vez feita a concatenação, pega a posição da transição do estado deletado e deleta ela, quando todas transicçoes do estado acabar, deleta o estado do vetor;
+10. Uma vez feita a concatenação, pega a posição da transição do estado deletado e deleta ela, quando todas transições do estado acabar, deleta o estado do vetor;
