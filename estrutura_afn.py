@@ -136,19 +136,19 @@ class Automato(object):
             self.automato = self.remove_laco_interno(deleta_nome)
 
         posicao_no_vetor_do_no_deletado = self.pega_estado(deleta_nome) #Pega a posição do estado a ser deletado no vetor
-        vertices_que_vao_ao_no = self.lista_entrada_do_vertice_deletado(deleta_nome)    #Lista com com os vértices que vão ao nó a ser deletado
+        estados_que_vao_ao_deletado = self.lista_entrada_do_vertice_deletado(deleta_nome)    #Lista com com os posições dos Estados que vão ao Estado a ser deletado
         lista_transicoes_no_deletado = self.saida_do_vertice_deletado(deleta_nome)  #Lista com as transições que saem do estado a ser deletado
         #Nestes dois "FOR" será pego da lista do estados que vão ao no a ser deletado e as transições do no a ser deletado com os outros estados
-        for i in range(len(vertices_que_vao_ao_no)):
+        for i in range(len(estados_que_vao_ao_deletado)):
             for j in range(len(lista_transicoes_no_deletado)):
-                destino = self.automato[posicao_no_vetor_do_no_deletado].transicoes[j][1]   #Primeiro destino de uma transição do no a ser deletado
+                destino = self.automato[posicao_no_vetor_do_no_deletado].transicoes[j][1]   #Primeiro destino de uma transição do no a ser deletado, no caso a primeira da lista
                 if deleta_nome != destino:
 
-                    nome_origem = self.automato[vertices_que_vao_ao_no[i]].nome #Pegando o nome do priemiro estado no vetor que vai ao no deletado
+                    nome_origem = self.automato[estados_que_vao_ao_deletado[i]].nome #Pegando o nome do priemiro estado no vetor que vai ao no deletado
                     aux = ''
                     if nome_origem != deleta_nome:  #Condição para evitar que pegue os símbolo de transição interno
                         aux = self.verifica_se_existe_ligacao(nome_origem, deleta_nome)
-                        aux = self.automato[vertices_que_vao_ao_no[i]].transicoes[aux][0]   #Se nao for fecho de klen, pegará o símbolo de transição
+                        aux = self.automato[estados_que_vao_ao_deletado[i]].transicoes[aux][0]   #Se nao for loop no estado, pegará o símbolo de transição
 
                     simbolo_destino = self.automato[posicao_no_vetor_do_no_deletado].transicoes[j][0]   #Pegando o símbolo de transição do estado a ser deletado com o primeiro destino no vetor do "FOR"
                     aux = [aux, simbolo_destino]
@@ -156,17 +156,17 @@ class Automato(object):
 
                     pos_ligacao = self.verifica_se_existe_ligacao(nome_origem, destino) #pegando, se existe, a posição da ligação do no que tem transição para no deletado
                                                                                         # e do Nó a ser deletado para o No destino do Vetor
-                    aux = self.automato[vertices_que_vao_ao_no[i]].transicoes[pos_ligacao][0]   #Pegando o símbolo da transição acima
+                    aux = self.automato[estados_que_vao_ao_deletado[i]].transicoes[pos_ligacao][0]   #Pegando o símbolo da transição acima
                     if pos_ligacao != int(-1) and aux != "#":    #Caso exista e o simbolo de transião seja "#" é feita uma concatenação
-                        aux = self.automato[vertices_que_vao_ao_no[i]].transicoes[pos_ligacao][0]
-                        self.automato[vertices_que_vao_ao_no[i]].transicoes[pos_ligacao][0] = "(" + aux + \
+                        aux = self.automato[estados_que_vao_ao_deletado[i]].transicoes[pos_ligacao][0]
+                        self.automato[estados_que_vao_ao_deletado[i]].transicoes[pos_ligacao][0] = "(" + aux + \
                             "+" + simbolos_concatenados + ")"
                     else:
                         ligacao = [simbolos_concatenados, destino]  #Caso contrário apenas inserirá a transição do no origem para o nó a ser deletado
-                        self.automato[vertices_que_vao_ao_no[i]].transicoes.append(ligacao)
+                        self.automato[estados_que_vao_ao_deletado[i]].transicoes.append(ligacao)
 
-            limpa_transicao = self.verifica_se_existe_ligacao(self.automato[vertices_que_vao_ao_no[i]].nome, deleta_nome)
+            limpa_transicao = self.verifica_se_existe_ligacao(self.automato[estados_que_vao_ao_deletado[i]].nome, deleta_nome)
             #"limpa_transicao" recebe a posicao da transição que está atual no "FOR" externo, caso I
-            self.automato[vertices_que_vao_ao_no[i]].transicoes.pop(limpa_transicao)    #É deletado esta transição do estado origem que vai para o nó deletado
+            self.automato[estados_que_vao_ao_deletado[i]].transicoes.pop(limpa_transicao)    #É deletado esta transição do estado origem que vai para o nó deletado
         self.automato.pop(posicao_no_vetor_do_no_deletado)  #Por fim deleta o estado deletado do vetor
 

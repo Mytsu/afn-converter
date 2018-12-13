@@ -88,17 +88,16 @@ def pintar_etapa(aut: Automato, etapa: int = 0, estado: str = None):
 if __name__ == '__main__':
     automato, lista = carregar_arquivo('teste.json')
     pintar_etapa(automato, 0, automato.automato[2].nome)
-    # Deixando em ordem do tipo, influencia a ordem que deleta os estados
-    automato.automato.sort(key=lambda x: x.tipo)
     automato.primeiro_passo()  # Acrescenta o estado "I" e "F"
     automato.modificaTransicoes()  # Aqui troca "," por "+" e coloca "*"
 
     et = 0
-    while automato.automato[0].tipo != 0:
+    for i in lista:
+        posicao = automato.pega_estado(i)
         pintar_etapa(automato, etapa=et, estado=automato.getAutomato()[0])
-        automato.deleta_estado(automato.automato[0].nome)
+        automato.deleta_estado(automato.automato[posicao].nome)
         et += 1
     pintar_etapa(automato, etapa=et)
 
-    print("Expression Regular is: " +
+    print("Expressão regular equivalente: " +
           str(automato.automato[0].transicoes[0][0]))
