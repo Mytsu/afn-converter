@@ -29,14 +29,11 @@ Uma lista de transições que segue o formato:
 transicao = [simbolo, estado_destino]
 ```
 
-Um autômato é meramente uma lista de estados, nesta estrutura.
+Um autômato é meramente uma lista de estados, nesta estrutura. Por Exemplo:
 
 ```Python
 automato = Automato()
-automato.addEstado(Estado("1", 0, [['a', "2"], ["b", "3"]])),
-automato.addEstado(Estado("2", 1, [['b', "2"], ["a", "4"]])),
-automato.addEstado(Estado("3", 1, [['b', 4]]))
-automato.addEstado(Estado("4", 2, []))
+automato.addEstado(Estado("1", 0, [['a', "2"], ["b", "3"]]))
 ```
 
 ### Entrada de Dados
@@ -74,9 +71,7 @@ AF:
 - Lista de Estados iniciais;
 - Lista de Estados finais.
 
-R:
-
-- Lista com as ordem de remoção dos estados.
+R: Lista com as ordem de remoção dos estados.
 
 ### Passo a passo do algoritmo
 
