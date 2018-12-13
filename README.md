@@ -90,7 +90,7 @@ R:
 
 4. Há um laço que deleta estado ate que chegue o estado inicial no vetor autômato, já prevista na estrada de dados;
 
-5. No deleta estado é feita uma verificação se determinado estado tem laço interno, caso tenha, irá removê-lo e já colocar seu símbolo com os outros de forma correta, caso tenha mais de uma transição naquele estado. Por fim retorna-se o novo automato depois da conversão;
+5. No ```deleta_estado``` é feita uma verificação se determinado estado tem laço interno, caso tenha, irá removê-lo e já colocar seu símbolo com os outros de forma correta, caso tenha mais de uma transição naquele estado. Por fim retorna-se o novo automato depois da conversão;
 
 6. Pega-se dados como posição do estado no vetor, os nomes dos vértices que vão ao nó deletado e por fim, dos vértices que recebem alguma ligação do no deletado;
 
